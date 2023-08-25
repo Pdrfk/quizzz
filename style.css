@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  #quiz-container {
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+  }
+  .question {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .answer-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 18px;
+  }
+  .answer-btn:hover {
+    background-color: #0056b3;
+  }
+  #score {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  #pokemon-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .pokemon-card {
+    width: 150px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+  }
+  .pokemon-card:hover {
+    transform: scale(1.05);
+  }
+  .pokemon-card img {
+    max-width: 100px;
+    margin-bottom: 10px;
+  }
+  .pokemon-card button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .pokemon-card button:hover {
+    background-color: #45a049;
+  }

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo de Perguntas e Respostas</title>
+</head>
+<body>
+    <div class="container">
+<div id="quiz-container" class="quiz-container-fancy">
+  <div class="question" id="question">🌟 Pergunta Vai Aparecer Aqui 🌟</div>
+  <button class="answer-btn answer-btn-fancy" id="btn-1">Resposta 1</button>
+  <button class="answer-btn answer-btn-fancy" id="btn-2">Resposta 2</button>
+  <button class="answer-btn answer-btn-fancy" id="btn-3">Resposta 3</button>
+  <div id="score" class="score-fancy">💎 Pontuação: 0 💎</div>
+</div>
+
+<div id="pokemon-cards" class="pokemon-cards-fancy">
+  <!-- Cartas de Pokémon serão exibidas aqui -->
+</div>
+</div>
+<script>
+const questions = [
+  {
+    question: "🗼 Qual é a capital da França?",
+    answers: ["🏴‍☠️ Londres", "🗼 Paris", "🏰 Berlim"],
+    correct: 1
+  },
+  {
+    question: "🎨 Quem pintou a Mona Lisa?",
+    answers: ["🖌️ Leonardo da Vinci", "🎨 Vincent van Gogh", "🎭 Pablo Picasso"],
+    correct: 0
+  },
+  {
+    question: "🪐 Qual é o maior planeta do Sistema Solar?",
+    answers: ["🌍 Terra", "🌕 Marte", "🪐 Júpiter"],
+    correct: 2
+  }
+  // Adicione mais questões aqui...
+];
+
+const questionElement = document.getElementById('question');
+const answerBtns = document.querySelectorAll('.answer-btn');
+const scoreElement = document.getElementById('score');
+const pokemonCardsElement = document.getElementById('pokemon-cards');
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function showQuestion(questionIndex) {
+  const currentQuestion = questions[questionIndex];
+  questionElement.textContent = currentQuestion.question;
+
+  currentQuestion.answers.forEach((answer, index) => {
+    answerBtns[index].textContent = answer;
+    answerBtns[index].addEventListener('click', () => selectAnswer(index));
+  });
+}
+
+function selectAnswer(selectedIndex) {
+  const currentQuestion = questions[currentQuestionIndex];
+
+  if (selectedIndex === currentQuestion.correct) {
+    alert('✨ Resposta Correta! ✨');
+    score += 15;
+  } else {
+    alert('❌ Resposta Incorreta. Tente Novamente. ❌');
+  }
+
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < questions.length) {
+    showQuestion(currentQuestionIndex);
+  } else {
+    alert(`🎉 Parabéns! Você Completou o Quiz. Sua Pontuação Final é: ${score} 🎉`);
+  }
+
+  scoreElement.textContent = `💎 Pontuação: ${score} 💎`;
+}
+
+showQuestion(currentQuestionIndex);
+
+const pokemonCards = [
+  { name: 'Pikachu', img: 'download.png', cost: 20 },
+  { name: 'Charmander', img: 'download (1).png', cost: 30 },
+  { name: 'Squirtle', img: 'download (2).png', cost: 25 }
+  // Adicione mais cartas de Pokémon aqui...
+];
+
+pokemonCards.forEach(pokemon => {
+  const cardElement = document.createElement('div');
+  cardElement.classList.add('pokemon-card', 'pokemon-card-fancy');
+  cardElement.innerHTML = `
+    <img src="${pokemon.img}" alt="${pokemon.name}" class="pokemon-img-fancy">
+    <p>${pokemon.name}</p>
+    <button onclick="buyPokemonCard('${pokemon.name}', ${pokemon.cost})" class="buy-btn-fancy">Comprar por ${pokemon.cost} pontos</button>
+  `;
+  pokemonCardsElement.appendChild(cardElement);
+});
+
+function buyPokemonCard(name, cost) {
+  if (score >= cost) {
+    score -= cost;
+    scoreElement.textContent = `💎 Pontuação: ${score} 💎`;
+    alert(`🎉 Parabéns! Você Comprou a Carta ${name}. 🎉`);
+  } else {
+    alert(`⚠️ Desculpe, Você Não Tem Pontos Suficientes para Comprar a Carta ${name}. ⚠️`);
+  }
+}
+</script>
+
+</body>
+</html>
